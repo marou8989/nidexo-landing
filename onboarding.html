@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidexo — Configuration de votre employé IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6C4DFF; --blue:#0288FF; --cyan:#00C2FF; --green:#00D084; --pink:#FF4D9D;
+    --bg:#0B0B14; --card:#1B1B29; --card-soft:#17172380; --line:rgba(255,255,255,0.09);
+    --text:#F1F1F6; --text-dim:#9A9AB0; --text-faint:#65657A;
+    --grad: linear-gradient(135deg, var(--purple), var(--blue) 60%, var(--cyan));
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;font-weight:400;min-height:100vh;-webkit-font-smoothing:antialiased;}
+  .mark{width:34px;height:34px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+  .mark::after{content:"N";font-weight:700;color:#fff;font-size:1.05rem;}
+  .mark::before{content:"✦";position:absolute;top:-5px;right:-5px;font-size:0.7rem;color:var(--cyan);}
+
+  .shell{max-width:640px;margin:0 auto;padding:36px 24px 60px;min-height:100vh;display:flex;flex-direction:column;}
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1.1rem;}
+  .skip{font-size:0.82rem;color:var(--text-faint);cursor:pointer;}
+
+  /* PROGRESS */
+  .progress-track{height:5px;background:var(--card);border-radius:100px;overflow:hidden;margin-bottom:10px;}
+  .progress-fill{height:100%;background:var(--grad);border-radius:100px;transition:width .4s ease;width:16.6%;}
+  .steps-label{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-faint);margin-bottom:40px;}
+  .steps-label span.current{color:var(--cyan);font-weight:600;}
+
+  .stage{flex:1;display:flex;flex-direction:column;justify-content:center;}
+  .step{display:none;animation:fadeIn .4s ease;}
+  .step.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  .step-eyebrow{font-size:0.78rem;color:var(--purple);font-weight:600;margin-bottom:12px;}
+  .step h1{font-size:1.7rem;font-weight:600;line-height:1.25;margin-bottom:12px;}
+  .step p.sub{color:var(--text-dim);font-size:0.94rem;font-weight:300;margin-bottom:32px;max-width:460px;}
+
+  /* WELCOME STEP */
+  .welcome-icon{width:72px;height:72px;border-radius:20px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:28px;}
+  .welcome-list{display:flex;flex-direction:column;gap:10px;margin:28px 0 6px;}
+  .welcome-list div{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:var(--text-dim);}
+
+  /* FORM FIELDS */
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:0.82rem;color:var(--text-dim);margin-bottom:7px;font-weight:500;}
+  .field input, .field select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;color:var(--text);font-family:inherit;font-size:0.92rem;}
+  .field input:focus, .field select:focus{outline:none;border-color:var(--purple);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+
+  /* CHOICE CARDS (channels, import, style) */
+  .choice-grid{display:flex;flex-direction:column;gap:12px;}
+  .choice-grid.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:520px){.choice-grid.two-col{grid-template-columns:1fr;}}
+  .choice{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer;transition:border-color .15s ease, background .15s ease;}
+  .choice:hover{border-color:rgba(108,77,255,0.4);}
+  .choice.selected{border-color:var(--purple);background:linear-gradient(90deg, rgba(108,77,255,0.12), rgba(2,136,255,0.04));}
+  .choice.disabled{opacity:0.4;cursor:not-allowed;}
+  .choice .ic{font-size:1.3rem;width:28px;text-align:center;flex-shrink:0;}
+  .choice .meta{flex:1;}
+  .choice .meta b{display:block;font-size:0.92rem;font-weight:600;}
+  .choice .meta span{font-size:0.78rem;color:var(--text-faint);}
+  .checkbox{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#fff;}
+  .choice.selected .checkbox{background:var(--grad);border-color:transparent;}
+  .tag-soon{font-size:0.66rem;background:rgba(255,255,255,0.06);border:1px solid var(--line);padding:2px 8px;border-radius:100px;margin-left:auto;color:var(--text-faint);}
+
+  /* STYLE CARDS (personality) */
+  .style-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:520px){.style-grid{grid-template-columns:1fr;}}
+  .style-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;text-align:center;transition:border-color .15s ease;}
+  .style-card:hover{border-color:rgba(108,77,255,0.4);}
+  .style-card.selected{border-color:var(--purple);background:linear-gradient(180deg, rgba(108,77,255,0.12), transparent);}
+  .style-card .em{font-size:1.4rem;margin-bottom:8px;}
+  .style-card b{font-size:0.86rem;font-weight:600;}
+
+  .name-suggest{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  .name-chip{font-size:0.8rem;background:var(--card);border:1px solid var(--line);padding:7px 14px;border-radius:100px;cursor:pointer;color:var(--text-dim);}
+  .name-chip:hover{border-color:var(--purple);color:var(--text);}
+
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:14px;}
+  .toggle-row .meta b{display:block;font-size:0.9rem;font-weight:600;}
+  .toggle-row .meta span{font-size:0.78rem;color:var(--text-faint);}
+  .switch{width:44px;height:26px;border-radius:100px;background:var(--line);position:relative;cursor:pointer;flex-shrink:0;transition:background .2s ease;}
+  .switch.on{background:var(--grad);}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s ease;}
+  .switch.on::after{transform:translateX(18px);}
+
+  /* NAV BUTTONS */
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:36px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;font-weight:600;font-size:0.9rem;cursor:pointer;border:none;font-family:inherit;transition:transform .18s ease, box-shadow .18s ease;}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px rgba(108,77,255,0.35);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--line);}
+  .btn-ghost:hover{color:var(--text);}
+  .btn-full{width:100%;justify-content:center;}
+
+  /* FINAL / COMPLETION STEP */
+  .done-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;margin-top:10px;}
+  .done-hello{font-size:0.85rem;color:var(--text-dim);}
+  .done-name{font-size:1.3rem;font-weight:600;margin-top:4px;}
+  .done-sub{font-size:0.88rem;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+  .done-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+  .stat-chip{background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:14px;padding:14px;}
+  .stat-chip .num{font-size:1.25rem;font-weight:700;color:var(--purple);}
+  .stat-chip:nth-child(2) .num{color:var(--blue);}
+  .stat-chip:nth-child(3) .num{color:var(--green);}
+  .stat-chip:nth-child(4) .num{color:var(--pink);}
+  .stat-chip .lbl{font-size:0.72rem;color:var(--text-faint);margin-top:2px;}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <div class="top">
+    <div class="logo"><div class="mark"></div>Nidexo</div>
+    <div class="skip" onclick="goStep(6)">Passer la configuration →</div>
+  </div>
+
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="steps-label">
+    <span id="stepText">Étape 1 sur 6</span>
+    <span id="stepName" class="current">Bienvenue</span>
+  </div>
+
+  <div class="stage">
+
+    <!-- STEP 1 : WELCOME -->
+    <div class="step active" data-step="1">
+      <div class="welcome-icon">✦</div>
+      <h1>Bienvenue sur Nidexo 👋</h1>
+      <p class="sub">Créons votre premier employé IA en moins de 5 minutes. Il répondra à vos clients, prendra leurs commandes et vous fera un rapport chaque jour.</p>
+      <div class="welcome-list">
+        <div>✅ Aucune compétence technique requise</div>
+        <div>✅ Connexion directe à WhatsApp et Messenger</div>
+        <div>✅ Modifiable à tout moment depuis les paramètres</div>
+      </div>
+      <div class="nav-row" style="justify-content:flex-end;">
+        <button class="btn btn-primary" onclick="goStep(2)">Commencer</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 : ENTREPRISE -->
+    <div class="step" data-step="2">
+      <div class="step-eyebrow">Étape 2</div>
+      <h1>Parlez-nous de votre entreprise</h1>
+      <p class="sub">Ces informations aident Nidexo à se présenter correctement à vos clients.</p>
+      <div class="field">
+        <label>Nom de l'entreprise</label>
+        <input type="text" placeholder="Ex. Boutique Zenith">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Secteur</label>
+          <select>
+            <option>Mode &amp; Vêtements</option>
+            <option>Restauration</option>
+            <option>Beauté &amp; Cosmétiques</option>
+            <option>Électronique</option>
+            <option>Santé &amp; Pharmacie</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Pays</label>
+          <select>
+            <option>Tunisie</option>
+            <option>Algérie</option>
+            <option>Maroc</option>
+            <option>France</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Devise</label>
+        <select>
+          <option>TND — Dinar tunisien</option>
+          <option>EUR — Euro</option>
+          <option>USD — Dollar américain</option>
+        </select>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Retour</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 : CANAUX -->
+    <div class="step" data-step="3">
+      <div class="step-eyebrow">Étape 3</div>
+      <h1>Choisissez vos canaux</h1>
+      <p class="sub">Nidexo peut répondre sur plusieurs canaux à la fois. Vous pourrez en ajouter d'autres plus tard.</p>
+      <div class="choice-grid">
+        <div class="choice selected" onclick="toggleChoice(this)">
+          <div class="ic">💬</div>
+          <div class="meta"><b>WhatsApp Business</b><span>Le canal principal pour vos clients en Tunisie</span></div>
+          <div class="checkbox">✓</div>
+        </div>
+        <div class="choice selected" onclick="toggleChoice(this)">
+          <div class="ic">✉️</div>
+          <div class="meta"><b>Messenger</b><span>Vos clients Facebook</span></div>
+          <div class="checkbox">✓</div>
+        </div>
+        <div class="choice disabled">
+          <div class="ic">📷</div>
+          <div class="meta"><b>Instagram</b><span>Bientôt disponible</span></div>
+          <div class="tag-soon">Soon</div>
+        </div>
+        <div class="choice disabled">
+          <div class="ic">✈️</div>
+          <div class="meta"><b>Telegram</b><span>Bientôt disponible</span></div>
+          <div class="tag-soon">Soon</div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goStep(2)">← Retour</button>
+        <button class="btn btn-primary" onclick="goStep(4)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 : PRODUITS -->
+    <div class="step" data-step="4">
+      <div class="step-eyebrow">Étape 4</div>
+      <h1>Importez vos produits</h1>
+      <p class="sub">Nidexo a besoin de connaître votre catalogue pour répondre à vos clients. Choisissez une méthode — vous pourrez en changer plus tard.</p>
+      <div class="choice-grid two-col">
+        <div class="choice" onclick="selectOnly(this)">
+          <div class="ic">📄</div>
+          <div class="meta"><b>Fichier CSV</b><span>Import rapide</span></div>
+        </div>
+        <div class="choice" onclick="selectOnly(this)">
+          <div class="ic">🛒</div>
+          <div class="meta"><b>Shopify</b><span>Synchronisation auto</span></div>
+        </div>
+        <div class="choice" onclick="selectOnly(this)">
+          <div class="ic">🧩</div>
+          <div class="meta"><b>WooCommerce</b><span>Synchronisation auto</span></div>
+        </div>
+        <div class="choice selected" onclick="selectOnly(this)">
+          <div class="ic">✍️</div>
+          <div class="meta"><b>Ajouter manuellement</b><span>Produit par produit</span></div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goStep(3)">← Retour</button>
+        <button class="btn btn-primary" onclick="goStep(5)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 5 : PERSONNALISATION IA -->
+    <div class="step" data-step="5">
+      <div class="step-eyebrow">Étape 5</div>
+      <h1>Personnalisez votre IA</h1>
+      <p class="sub">Donnez un nom à votre employé et choisissez son style de communication.</p>
+      <div class="field">
+        <label>Nom de l'assistant</label>
+        <input type="text" id="assistantName" placeholder="Ex. Nora">
+        <div class="name-suggest">
+          <div class="name-chip" onclick="setName('Nora')">Nora</div>
+          <div class="name-chip" onclick="setName('Lina')">Lina</div>
+          <div class="name-chip" onclick="setName('Alex')">Alex</div>
+          <div class="name-chip" onclick="setName('Yasmine')">Yasmine</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:26px;">
+        <label>Style de réponse</label>
+        <div class="style-grid">
+          <div class="style-card selected" onclick="selectStyle(this)"><div class="em">💼</div><b>Professionnel</b></div>
+          <div class="style-card" onclick="selectStyle(this)"><div class="em">😊</div><b>Amical</b></div>
+          <div class="style-card" onclick="selectStyle(this)"><div class="em">🛍️</div><b>Commercial</b></div>
+          <div class="style-card" onclick="selectStyle(this)"><div class="em">✨</div><b>Premium</b></div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goStep(4)">← Retour</button>
+        <button class="btn btn-primary" onclick="goStep(6)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 6 : LANGUES -->
+    <div class="step" data-step="6">
+      <div class="step-eyebrow">Étape 6</div>
+      <h1>Langues</h1>
+      <p class="sub">Choisissez les langues que votre employé IA doit comprendre.</p>
+      <div class="choice-grid">
+        <div class="choice selected" onclick="toggleChoice(this)">
+          <div class="ic">🇫🇷</div><div class="meta"><b>Français</b></div><div class="checkbox">✓</div>
+        </div>
+        <div class="choice selected" onclick="toggleChoice(this)">
+          <div class="ic">🇹🇳</div><div class="meta"><b>العربية</b></div><div class="checkbox">✓</div>
+        </div>
+        <div class="choice selected" onclick="toggleChoice(this)">
+          <div class="ic">🇬🇧</div><div class="meta"><b>English</b></div><div class="checkbox">✓</div>
+        </div>
+      </div>
+      <div class="toggle-row">
+        <div class="meta"><b>🔄 Détection automatique</b><span>Nidexo répond dans la langue utilisée par le client</span></div>
+        <div class="switch on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goStep(5)">← Retour</button>
+        <button class="btn btn-primary" onclick="goStep(7)">Terminer la configuration</button>
+      </div>
+    </div>
+
+    <!-- STEP 7 : DONE -->
+    <div class="step" data-step="7">
+      <div class="welcome-icon" style="font-size:1.8rem;">🎉</div>
+      <h1>Votre employé IA est prêt !</h1>
+      <p class="sub">Il commence dès maintenant à surveiller vos canaux. Voici à quoi ressemblera votre rapport quotidien.</p>
+      <div class="done-card">
+        <div class="done-hello">Bonjour 👋</div>
+        <div class="done-name" id="doneName">Marouen</div>
+        <div class="done-sub">Pendant votre absence, <span id="doneAssistant">votre assistant</span> a :</div>
+        <div class="done-stats">
+          <div class="stat-chip"><div class="num">58</div><div class="lbl">💬 Clients répondus</div></div>
+          <div class="stat-chip"><div class="num">14</div><div class="lbl">🛒 Commandes générées</div></div>
+          <div class="stat-chip"><div class="num">3 120 TND</div><div class="lbl">💰 Ventes réalisées</div></div>
+          <div class="stat-chip"><div class="num">97%</div><div class="lbl">⭐ Satisfaction</div></div>
+        </div>
+      </div>
+      <div class="nav-row" style="justify-content:center;">
+        <button class="btn btn-primary btn-full" onclick="alert('Direction : Tableau de bord →')">📋 Voir mon rapport complet</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const stepNames = {1:"Bienvenue",2:"Entreprise",3:"Canaux",4:"Produits",5:"Personnalisation IA",6:"Langues",7:"Terminé"};
+  let current = 1;
+
+  function goStep(n){
+    document.querySelector(`.step[data-step="${current}"]`).classList.remove('active');
+    current = n;
+    document.querySelector(`.step[data-step="${current}"]`).classList.add('active');
+
+    const pct = Math.min(current,6) / 6 * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    if(current <= 6){
+      document.getElementById('stepText').textContent = `Étape ${current} sur 6`;
+      document.getElementById('stepName').textContent = stepNames[current];
+    } else {
+      document.getElementById('stepText').textContent = `Configuration terminée`;
+      document.getElementById('stepName').textContent = "🎉";
+      const name = document.getElementById('assistantName').value || 'votre assistant';
+      document.getElementById('doneAssistant').textContent = name;
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function toggleChoice(el){
+    el.classList.toggle('selected');
+    const box = el.querySelector('.checkbox');
+    box.textContent = el.classList.contains('selected') ? '✓' : '';
+  }
+
+  function selectOnly(el){
+    el.parentElement.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function selectStyle(el){
+    el.parentElement.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function setName(name){
+    document.getElementById('assistantName').value = name;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidexo — Démo WhatsApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6C4DFF; --blue:#0288FF; --cyan:#00C2FF; --green:#00D084; --pink:#FF4D9D;
+    --bg:#0B0B14; --card:#1B1B29; --line:rgba(255,255,255,0.09);
+    --text:#F1F1F6; --text-dim:#9A9AB0; --text-faint:#65657A;
+    --grad: linear-gradient(135deg, var(--purple), var(--blue) 60%, var(--cyan));
+    --wa-bg:#0A1014;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  a{color:inherit;text-decoration:none;}
+  .mark{width:34px;height:34px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+  .mark::after{content:"N";font-weight:700;color:#fff;font-size:1.05rem;}
+  .mark::before{content:"✦";position:absolute;top:-5px;right:-5px;font-size:0.7rem;color:var(--cyan);}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1.2rem;}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(11,11,20,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  nav .wrap{max-width:1100px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:74px;}
+  @media(max-width:640px){nav .wrap{padding:0 20px;}}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;font-family:inherit;}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px rgba(108,77,255,0.35);}
+
+  .page{max-width:1000px;margin:0 auto;padding:50px 24px 80px;}
+  .intro{text-align:center;max-width:560px;margin:0 auto 40px;}
+  .intro .eyebrow{font-size:0.78rem;color:var(--purple);font-weight:600;margin-bottom:12px;}
+  .intro h1{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:600;margin-bottom:12px;}
+  .intro p{color:var(--text-dim);font-weight:300;font-size:0.95rem;}
+
+  .demo-grid{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
+  @media(max-width:820px){.demo-grid{grid-template-columns:1fr;}}
+
+  /* PHONE FRAME */
+  .phone{max-width:380px;margin:0 auto;background:var(--card);border-radius:36px;border:1px solid var(--line);padding:14px;box-shadow:0 40px 90px rgba(0,0,0,0.5);}
+  .phone-notch{width:90px;height:6px;background:rgba(255,255,255,0.15);border-radius:10px;margin:0 auto 12px;}
+  .wa-window{background:var(--wa-bg);border-radius:24px;overflow:hidden;height:560px;display:flex;flex-direction:column;}
+  .wa-header{background:#111B21;padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .wa-header .av{width:36px;height:36px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+  .wa-header .meta b{display:block;font-size:0.9rem;font-weight:600;}
+  .wa-header .meta span{font-size:0.72rem;color:var(--green);}
+  .wa-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px;background-image:radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);background-size:14px 14px;}
+  .msg{max-width:78%;padding:9px 12px;border-radius:12px;font-size:0.85rem;line-height:1.4;position:relative;}
+  .msg.in{align-self:flex-start;background:#1F2C34;color:#E9EDEF;border-bottom-left-radius:3px;}
+  .msg.out{align-self:flex-end;background:#8B6CFF;color:#fff;border-bottom-right-radius:3px;}
+  .msg .time{display:block;font-size:0.62rem;opacity:0.6;margin-top:4px;text-align:right;}
+  .typing-ind{align-self:flex-start;display:flex;gap:4px;padding:10px 13px;background:#1F2C34;border-radius:12px;border-bottom-left-radius:3px;}
+  .typing-ind span{width:5px;height:5px;border-radius:50%;background:#8b98a1;animation:blink 1s infinite ease-in-out;}
+  .typing-ind span:nth-child(2){animation-delay:.15s;}
+  .typing-ind span:nth-child(3){animation-delay:.3s;}
+  @keyframes blink{0%,80%,100%{opacity:.3;}40%{opacity:1;}}
+  .wa-input{background:#111B21;padding:10px 12px;display:flex;gap:8px;align-items:center;}
+  .wa-input input{flex:1;background:#1F2C34;border:none;border-radius:22px;padding:11px 16px;color:#fff;font-family:inherit;font-size:0.85rem;}
+  .wa-input input:focus{outline:none;}
+  .wa-input button{width:40px;height:40px;border-radius:50%;background:var(--grad);border:none;color:#fff;font-size:1rem;cursor:pointer;flex-shrink:0;}
+
+  /* SIDE : SUGGESTIONS */
+  .side-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;}
+  .side-card h3{font-size:0.92rem;font-weight:600;margin-bottom:14px;}
+  .chip{display:block;width:100%;text-align:left;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:0.82rem;color:var(--text-dim);margin-bottom:8px;cursor:pointer;font-family:inherit;}
+  .chip:hover{border-color:var(--purple);color:var(--text);}
+  .reset-btn{width:100%;background:transparent;border:1px solid var(--line);color:var(--text-dim);border-radius:10px;padding:11px;font-size:0.82rem;cursor:pointer;font-family:inherit;}
+  .reset-btn:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><div class="mark"></div>Nidexo</a>
+    <a href="login.html" class="btn btn-primary">Rejoindre la liste d'attente</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="intro">
+    <div class="eyebrow">Démo interactive</div>
+    <h1>Discutez avec Nidexo, en direct</h1>
+    <p>Ceci est une simulation de l'assistant configuré pour une boutique de vêtements. Il comprend et répond automatiquement en français, en dialecte tunisien 🇹🇳 et en anglais — essayez-lui d'écrire dans une de ces langues, ou cliquez sur une suggestion.</p>
+  </div>
+
+  <div class="demo-grid">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="wa-window">
+        <div class="wa-header">
+          <div class="av"></div>
+          <div class="meta"><b>Nidexo — Boutique Zenith</b><span id="statusText">en ligne</span></div>
+        </div>
+        <div class="wa-body" id="waBody">
+          <div class="msg in">Bonjour 👋 Je suis l'employé IA de Boutique Zenith. Comment puis-je vous aider aujourd'hui ?<span class="time">10:30</span></div>
+        </div>
+        <div class="wa-input">
+          <input type="text" id="msgInput" placeholder="Écrire un message…" onkeydown="if(event.key==='Enter') sendMessage()">
+          <button onclick="sendMessage()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="side-card">
+        <h3>💡 Essayez ces messages</h3>
+        <button class="chip" onclick="quickSend('Bonjour, combien coûte ce produit ?')">Bonjour, combien coûte ce produit ?</button>
+        <button class="chip" onclick="quickSend('عسلامة، قداش سوم هالبلوزة؟')">عسلامة، قداش سوم هالبلوزة؟</button>
+        <button class="chip" onclick="quickSend('توصلو لصفاقس؟')">توصلو لصفاقس؟</button>
+        <button class="chip" onclick="quickSend('عندكم مقاسات؟')">عندكم مقاسات؟</button>
+        <button class="chip" onclick="quickSend('Do you ship internationally?')">Do you ship internationally?</button>
+        <button class="chip" onclick="quickSend('Le pull noir est indisponible, vous avez autre chose ?')">Le pull noir est indisponible, vous avez autre chose ?</button>
+        <button class="chip" onclick="quickSend('نحب نلغي الطلبية متاعي')">نحب نلغي الطلبية متاعي</button>
+      </div>
+      <div class="side-card">
+        <h3>ℹ️ À propos de cette démo</h3>
+        <p style="font-size:0.8rem;color:var(--text-dim);font-weight:300;line-height:1.6;">Les réponses sont pré-configurées pour illustrer le fonctionnement de Nidexo. Dans votre compte réel, l'IA apprend de votre propre catalogue et de vos consignes.</p>
+      </div>
+      <button class="reset-btn" onclick="resetChat()">↺ Recommencer la conversation</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const waBody = document.getElementById('waBody');
+  const msgInput = document.getElementById('msgInput');
+
+  const rules = [
+    { kws:['prix','coûte','combien','som','قداش','قدا','price','cost','how much'],
+      fr:"Ce produit coûte 89 TND. Souhaitez-vous voir les autres couleurs disponibles ?",
+      tn:"سومها 89 دينار 👋 تحب نبعثلك الألوان الأخرى المتوفرة؟",
+      en:"This product costs 89 TND. Would you like to see the other available colors?" },
+    { kws:['livr','sfax','livraison','ship','deliver','shipping','توصيل','تجيب'],
+      fr:"Oui, nous livrons partout en Tunisie sous 24 à 48h. Vous voulez que je prépare votre commande ?",
+      tn:"أيه، نوصلو في كل تونس في 24 ل48 سعة. تحب نحضرلك الطلبية؟",
+      en:"Yes, we deliver anywhere in Tunisia within 24-48h. Would you like me to prepare your order?" },
+    { kws:['international','étranger','abroad','worldwide'],
+      fr:"Oui ! Nous livrons à l'international vers certains pays. Dites-moi votre destination et je vérifie les options.",
+      tn:"أيه! نوصلو لبرا تونس لبعض البلدان. قوللي لوين باش نشوفلك الإمكانيات.",
+      en:"Yes! We ship internationally to select countries. Let me know your destination and I'll check the options." },
+    { kws:['مقاس','taille','size'],
+      fr:"Nous avons les tailles S, M, L et XL en stock. Quelle taille cherchez-vous ?",
+      tn:"عندنا المقاسات S وM وL وXL متوفرين. أي مقاس تحب؟",
+      en:"We have sizes S, M, L and XL in stock. Which size are you looking for?" },
+    { kws:['bonjour','salut','عسلامة','سلام','hello','hi'],
+      fr:"Bonjour 👋 Ravi de vous aider ! Que cherchez-vous aujourd'hui ?",
+      tn:"عسلامة 👋 أهلا بيك! شنية تحب تشري اليوم؟",
+      en:"Hello 👋 Happy to help! What are you looking for today?" },
+    { kws:['pas dispo','rupture','indisponible','plus de stock','out of stock','unavailable','ماعندكمش','ماما'],
+      fr:"Ce modèle est en rupture pour le moment, mais j'ai une alternative très proche en stock, même coupe, coloris gris chiné. Je vous envoie la photo ?",
+      tn:"هالموديل نفدلنا توا، أما عندي بديل قريب برشا منّو، نفس القصة، بلون رمادي. نبعثلك تصورتو؟",
+      en:"This model is out of stock right now, but I have a very similar alternative in stock, same cut, heather grey. Should I send you the photo?" },
+    { kws:['annuler','رجاع','نلغي','remboursement','retour','cancel','refund','return'],
+      fr:"Pas de souci, j'ai lancé votre demande de retour et généré l'étiquette de renvoi. Vous recevrez le remboursement sous 5 jours après réception du colis.",
+      tn:"ماكاش مشكل، عملتلك طلب الإرجاع وخلقتلك ملصق الطرد. الفلوس ترجعلك في 5 أيام بعد ما توصل الطردية.",
+      en:"No worries, I've started your return request and generated the return label. You'll be refunded within 5 days after the parcel is received." },
+    { kws:['merci','thanks','thank you','شكرا','يعيشك'],
+      fr:"Avec plaisir 😊 N'hésitez pas si vous avez d'autres questions !",
+      tn:"يعيشك 😊 حاضرين دايمًا كان عندك سؤال آخر!",
+      en:"You're welcome 😊 Feel free to ask if you have any other questions!" }
+  ];
+  const fallback = {
+    fr:"Bonne question ! D'après notre catalogue, je vous recommande notre modèle le plus populaire cette semaine — même style, disponible dans toutes les tailles. Voulez-vous que je vous envoie les détails ?",
+    tn:"سؤال محلول 👌 نصحتك بالموديل الأكثر مبيعًا هالجمعة — نفس الستايل ومتوفر في كل المقاسات. تحب نبعثلك التفاصيل؟",
+    en:"Good question! Based on our catalog, I'd recommend our most popular model this week — same style, available in every size. Want me to send you the details?"
+  };
+  const englishHints = ['the','you','do','is','are','how','what','please','need','want','have','ship','order','price','thanks','hello','hi'];
+
+  function detectLang(text){
+    if(/[\u0600-\u06FF]/.test(text)) return 'tn';
+    const lower = ' ' + text.toLowerCase() + ' ';
+    const hits = englishHints.filter(w => lower.includes(' ' + w + ' ')).length;
+    return hits > 0 ? 'en' : 'fr';
+  }
+
+  function getTime(){
+    const d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function addMessage(text, who){
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.innerHTML = text + '<span class="time">' + getTime() + '</span>';
+    waBody.appendChild(div);
+    waBody.scrollTop = waBody.scrollHeight;
+  }
+
+  function showTyping(){
+    const t = document.createElement('div');
+    t.className = 'typing-ind';
+    t.id = 'typingInd';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    waBody.appendChild(t);
+    waBody.scrollTop = waBody.scrollHeight;
+  }
+  function hideTyping(){
+    const t = document.getElementById('typingInd');
+    if(t) t.remove();
+  }
+
+  function respond(userText){
+    const lower = userText.toLowerCase();
+    const lang = detectLang(userText);
+    let match = rules.find(r => r.kws.some(k => lower.includes(k.toLowerCase())));
+    showTyping();
+    setTimeout(()=>{
+      hideTyping();
+      const reply = match ? match[lang] : fallback[lang];
+      addMessage(reply, 'in');
+    }, 900);
+  }
+
+  function sendMessage(){
+    const val = msgInput.value.trim();
+    if(!val) return;
+    addMessage(val, 'out');
+    msgInput.value = '';
+    respond(val);
+  }
+
+  function quickSend(text){
+    msgInput.value = text;
+    sendMessage();
+  }
+
+  function resetChat(){
+    waBody.innerHTML = '<div class="msg in">Bonjour 👋 Je suis l\'employé IA de Boutique Zenith. Comment puis-je vous aider aujourd\'hui ?<span class="time">' + getTime() + '</span></div>';
+  }
+</script>
+</body>
+</html>

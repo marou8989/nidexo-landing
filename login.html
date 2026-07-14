@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidexo — Connexion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6C4DFF; --blue:#0288FF; --cyan:#00C2FF; --green:#00D084; --pink:#FF4D9D;
+    --bg:#0B0B14; --card:#1B1B29; --line:rgba(255,255,255,0.09);
+    --text:#F1F1F6; --text-dim:#9A9AB0; --text-faint:#65657A;
+    --grad: linear-gradient(135deg, var(--purple), var(--blue) 60%, var(--cyan));
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;}
+  .mark{width:34px;height:34px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+  .mark::after{content:"N";font-weight:700;color:#fff;font-size:1.05rem;}
+  .mark::before{content:"✦";position:absolute;top:-5px;right:-5px;font-size:0.7rem;color:var(--cyan);}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1.2rem;}
+
+  .split{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+  @media(max-width:900px){.split{grid-template-columns:1fr;}}
+
+  /* LEFT : FORM */
+  .form-side{display:flex;flex-direction:column;padding:36px 56px;}
+  @media(max-width:560px){.form-side{padding:28px 24px;}}
+  .form-wrap{max-width:380px;margin:auto;width:100%;}
+
+  .tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;margin:36px 0 30px;}
+  .tabs button{flex:1;border:none;background:none;color:var(--text-dim);font-family:inherit;font-weight:600;font-size:0.88rem;padding:11px;border-radius:9px;cursor:pointer;}
+  .tabs button.active{background:var(--grad);color:#fff;}
+
+  .form-wrap h1{font-size:1.5rem;font-weight:600;margin-bottom:8px;}
+  .form-wrap p.sub{color:var(--text-dim);font-size:0.9rem;font-weight:300;margin-bottom:28px;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:0.82rem;color:var(--text-dim);margin-bottom:7px;font-weight:500;}
+  .field input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;color:var(--text);font-family:inherit;font-size:0.9rem;}
+  .field input:focus{outline:none;border-color:var(--purple);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:460px){.field-row{grid-template-columns:1fr;}}
+
+  .row-between{display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;margin:6px 0 24px;}
+  .row-between a{color:var(--cyan);text-decoration:none;}
+  .checkline{display:flex;align-items:center;gap:8px;color:var(--text-dim);}
+  .checkline input{accent-color:var(--purple);}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:12px;font-weight:600;font-size:0.9rem;cursor:pointer;border:none;font-family:inherit;width:100%;transition:transform .18s ease;}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 22px rgba(108,77,255,0.35);}
+  .btn-primary:hover{transform:translateY(-2px);}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:26px 0;color:var(--text-faint);font-size:0.78rem;}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .btn-social{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:0.88rem;font-weight:500;cursor:pointer;color:var(--text);margin-bottom:10px;}
+  .btn-social:hover{border-color:rgba(255,255,255,0.2);}
+
+  .switch-text{text-align:center;font-size:0.85rem;color:var(--text-dim);margin-top:26px;}
+  .switch-text a{color:var(--cyan);text-decoration:none;font-weight:500;cursor:pointer;}
+
+  .terms-note{font-size:0.75rem;color:var(--text-faint);margin-top:18px;line-height:1.5;text-align:center;}
+  .terms-note a{color:var(--text-dim);}
+
+  /* RIGHT : SHOWCASE */
+  .showcase{background:linear-gradient(160deg,#151529,#0B0B14 60%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;position:relative;overflow:hidden;}
+  @media(max-width:900px){.showcase{display:none;}}
+  .showcase::before{content:"";position:absolute;width:520px;height:520px;background:radial-gradient(circle,rgba(108,77,255,0.25),transparent 70%);top:-160px;right:-160px;}
+  .showcase-inner{position:relative;max-width:380px;text-align:center;}
+  .phone{width:290px;background:var(--card);border-radius:32px;border:1px solid var(--line);padding:12px;box-shadow:0 40px 80px rgba(0,0,0,0.5);margin:0 auto 34px;}
+  .phone-screen{background:var(--bg);border-radius:20px;overflow:hidden;min-height:340px;padding:16px;display:flex;flex-direction:column;gap:10px;}
+  .chat-header{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:2px;}
+  .chat-header .av{width:28px;height:28px;border-radius:8px;background:var(--grad);}
+  .chat-header .meta b{display:block;font-size:0.8rem;font-weight:600;}
+  .chat-header .meta span{color:var(--green);font-size:0.65rem;}
+  .bubble{max-width:80%;padding:9px 12px;border-radius:12px;font-size:0.76rem;line-height:1.4;}
+  .bubble.in{align-self:flex-start;background:rgba(255,255,255,0.07);}
+  .bubble.out{align-self:flex-end;background:var(--grad);color:#fff;font-weight:500;}
+  .showcase-inner h2{font-size:1.25rem;font-weight:600;margin-bottom:10px;}
+  .showcase-inner p{color:var(--text-dim);font-size:0.88rem;font-weight:300;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="split">
+
+  <!-- LEFT : FORM -->
+  <div class="form-side">
+    <a href="index.html" class="logo"><div class="mark"></div>Nidexo</a>
+
+    <div class="form-wrap">
+      <div class="tabs">
+        <button class="active" onclick="setMode('login')">Connexion</button>
+        <button onclick="setMode('signup')">Créer un compte</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <h1>Bon retour 👋</h1>
+        <p class="sub">Connectez-vous pour retrouver votre employé IA.</p>
+
+        <div class="field"><label>Email</label><input type="email" placeholder="vous@entreprise.com"></div>
+        <div class="field"><label>Mot de passe</label><input type="password" placeholder="••••••••"></div>
+
+        <div class="row-between">
+          <label class="checkline"><input type="checkbox">Se souvenir de moi</label>
+          <a href="#">Mot de passe oublié ?</a>
+        </div>
+
+        <button class="btn btn-primary">Se connecter</button>
+
+        <div class="divider">ou</div>
+        <div class="btn-social">🔵 Continuer avec Google</div>
+        <div class="btn-social">💬 Continuer avec WhatsApp</div>
+
+        <div class="switch-text">Pas encore de compte ? <a onclick="setMode('signup')">Créer un compte</a></div>
+      </div>
+
+      <!-- SIGNUP -->
+      <div id="signupForm" style="display:none;">
+        <h1>Créons votre employé IA 🚀</h1>
+        <p class="sub">Ça prend moins de 5 minutes, sans carte bancaire.</p>
+
+        <div class="field"><label>Nom complet</label><input type="text" placeholder="Marouen Ben Salah"></div>
+        <div class="field"><label>Nom de l'entreprise</label><input type="text" placeholder="Boutique Zenith"></div>
+        <div class="field-row">
+          <div class="field"><label>Email</label><input type="email" placeholder="vous@entreprise.com"></div>
+          <div class="field"><label>WhatsApp</label><input type="tel" placeholder="+216 ..."></div>
+        </div>
+        <div class="field"><label>Mot de passe</label><input type="password" placeholder="8 caractères minimum"></div>
+
+        <div class="row-between" style="margin-top:2px;">
+          <label class="checkline"><input type="checkbox" checked>J'accepte les <a href="terms.html">conditions d'utilisation</a></label>
+        </div>
+
+        <button class="btn btn-primary" onclick="window.location.href='onboarding.html'">Créer mon compte</button>
+
+        <div class="divider">ou</div>
+        <div class="btn-social">🔵 S'inscrire avec Google</div>
+
+        <div class="switch-text">Déjà un compte ? <a onclick="setMode('login')">Se connecter</a></div>
+        <div class="terms-note">En créant un compte, vous acceptez nos <a href="terms.html">conditions d'utilisation</a> et notre <a href="privacy.html">politique de confidentialité</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT : SHOWCASE -->
+  <div class="showcase">
+    <div class="showcase-inner">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="chat-header">
+            <div class="av"></div>
+            <div class="meta"><b>Nidexo</b><span>● en ligne</span></div>
+          </div>
+          <div class="bubble in">Bonjour, vous livrez à Sfax ?</div>
+          <div class="bubble out">Bonjour 👋 Oui, livraison en 24-48h. Vous voulez commander ?</div>
+          <div class="bubble in">Oui, je confirme</div>
+          <div class="bubble out">Parfait ✅ Commande créée.</div>
+        </div>
+      </div>
+      <h2>Votre meilleur vendeur ne dort jamais.</h2>
+      <p>Rejoignez les commerçants qui laissent Nidexo répondre à leurs clients 24h/24 sur WhatsApp et Messenger.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode){
+    const isLogin = mode === 'login';
+    document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+    document.getElementById('signupForm').style.display = isLogin ? 'none' : 'block';
+    document.querySelectorAll('.tabs button').forEach((b,i)=> b.classList.toggle('active', (i===0)===isLogin));
+  }
+</script>
+</body>
+</html>
