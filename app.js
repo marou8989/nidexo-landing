@@ -3,7 +3,7 @@
     fr: {
       nav_why:"Pourquoi Nidexo", nav_how:"Comment ça marche", nav_demo:"Démo", nav_pricing:"Tarifs", nav_faq:"FAQ",
       nav_cta:"Rejoindre la liste d'attente",
-      hero_title:"Votre meilleur vendeur ne dort jamais.",
+      hero_title:"Recrutez votre premier employé IA",
       hero_sub:"Nidexo répond à vos clients, recommande vos produits et augmente vos ventes 24h/24 sur WhatsApp et Messenger.",
       hero_cta1:"🚀 Demander une démo", hero_cta2:"▶ Voir Nidexo en action",
       hero_langs_label:"🌍 Langues supportées :",
