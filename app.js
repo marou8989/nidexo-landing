@@ -37,7 +37,7 @@
       faq_eyebrow:"FAQ", faq_title:"Vos questions, nos réponses",
       q1:"Est-ce compatible avec WhatsApp ?", a1:"Oui, Nidexo se connecte directement à votre compte WhatsApp Business.",
       q2:"Puis-je utiliser Messenger ?", a2:"Oui, Messenger est disponible en plus de WhatsApp sur les offres Business et Enterprise.",
-      q3:"L'IA parle-t-elle français et arabe ?", a3:"Oui, Nidexo détecte automatiquement la langue du client — français, arabe ou anglais — et répond dans la même langue.",
+      q3:"L'IA" parle-t-elle français et arabe ?", a3:"Oui, Nidexo détecte automatiquement la langue du client — français, arabe ou anglais — et répond dans la même langue.",
       q4:"Combien de temps pour démarrer ?", a4:"Quelques minutes suffisent : connectez WhatsApp, importez vos produits, et Nidexo est prêt.",
       final_title:"Prêt à recruter votre meilleur vendeur ?", final_sub:"Places limitées pour la bêta — les premiers inscrits gardent leur prix à vie.",
       footer_tagline:"Votre employé IA pour WhatsApp & Messenger.",
@@ -49,7 +49,7 @@
     ar: {
       nav_why:"ليش Nidexo", nav_how:"كيفاش تخدم", nav_demo:"ديمو", nav_pricing:"الأسعار", nav_faq:"الأسئلة الشائعة",
       nav_cta:"انضم لقائمة الانتظار",
-      hero_title:"أفضل بائع عندك ما ينعسش أبدًا.",
+      hero_title:"أول موظف ذكاء اصطناعي لمؤسستك",
       hero_sub:"Nidexo يجاوب حرفاءك، يقترح منتجاتك ويزيد مبيعاتك 24 على 24 على WhatsApp وMessenger.",
       hero_cta1:"🚀 اطلب ديمو", hero_cta2:"▶ شوف Nidexo يخدم",
       hero_langs_label:"🌍 اللغات المدعومة:",
