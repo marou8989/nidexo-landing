@@ -51,7 +51,7 @@
       nav_cta:"انضم لقائمة الانتظار",
       hero_title:"أول موظف ذكاء اصطناعي لمؤسستك",
       hero_sub:"Nidexo يجاوب حرفاءك، يقترح منتجاتك ويزيد مبيعاتك 24 على 24 على WhatsApp وMessenger.",
-      hero_cta1:"🚀 اطلب ديمو", hero_cta2:"▶ شوف Nidexo يخدم",
+      hero_cta1: "أبدأ مع Nidexo",
       hero_langs_label:"🌍 اللغات المدعومة:",
       soon_tag:"قريبًا",
       why_eyebrow:"ليش Nidexo؟", why_title:"أول موظف ذكاء اصطناعي لمؤسستك",
