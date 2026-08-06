@@ -97,7 +97,7 @@
       nav_cta:"Join the waitlist",
       hero_title:"Your best salesperson never sleeps.",
       hero_sub:"Nidexo replies to your customers, recommends your products and grows your sales 24/7 on WhatsApp and Messenger.",
-      hero_cta1:"🚀 Request a demo", hero_cta2:"▶ See Nidexo in action",
+      hero_cta1: "Start with Nidexo",
       hero_langs_label:"🌍 Supported languages:",
       soon_tag:"Coming soon",
       why_eyebrow:"Why Nidexo?", why_title:"An employee who never takes a break",
