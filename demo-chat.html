@@ -127,27 +127,25 @@
   const waBody = document.getElementById('waBody');
   const msgInput = document.getElementById('msgInput');
 
-  const rules = [
-    { kws:['prix','coûte','combien','som','قداش','قدا','price','cost','how much'],
-      fr:"Ce produit coûte 89 TND. Souhaitez-vous voir les autres couleurs disponibles ?",
-      tn:"سومها 89 دينار 👋 تحب نبعثلك الألوان الأخرى المتوفرة؟",
-     en: "This product costs 89 TND. Would you like to see the other available colors?"
+ const rules = [
+    {
+        kws: ['prix', 'coûte', 'combien', 'som', 'قداش', 'سوم', 'price', 'cost'],
+        fr: "Ce produit coûte 89 TND. Souhaitez-vous voir les autres couleurs disponibles ?",
+        tn: "سومها 89 دينار 📦 تحب نثبتلك الألوان الأخرى المتوفرة؟",
+        en: "This product costs 89 TND. Would you like to see the other available colors?"
     },
     {
         kws: ['livr', 'lille', 'sfax', 'livraison', 'ship', 'deliver', 'shipping', 'تنوصل', 'تنوصلوا'],
         fr: "Oui, absolument ! 🚚 Nous livrons à Lille et dans toute la France sous 48h. Souhaitez-vous passer commande ?",
         tn: "إي، نوصلوا في كل تونس في ظرف 24 لـ 48 ساعة. تحب نحضرلك الطلبية؟",
         en: "Yes, we deliver anywhere in Tunisia within 24-48h. Would you like me to prepare your order?"
-      tn:"أيه، نوصلو في كل تونس في 24 ل48 سعة. تحب نحضرلك الطلبية؟",
-      en:"Yes, we deliver anywhere in Tunisia within 24-48h. Would you like me to prepare your order?" },
-    { kws:['international','étranger','abroad','worldwide'],
-      fr:"Oui ! Nous livrons à l'international vers certains pays. Dites-moi votre destination et je vérifie les options.",
-      tn:"أيه! نوصلو لبرا تونس لبعض البلدان. قوللي لوين باش نشوفلك الإمكانيات.",
-      en:"Yes! We ship internationally to select countries. Let me know your destination and I'll check the options." },
-    { kws:['مقاس','taille','size'],
-      fr:"Nous avons les tailles S, M, L et XL en stock. Quelle taille cherchez-vous ?",
-      tn:"عندنا المقاسات S وM وL وXL متوفرين. أي مقاس تحب؟",
-      en:"We have sizes S, M, L and XL in stock. Which size are you looking for?" },
+    },
+    {
+        kws: ['international', 'étranger', 'abroad', 'worldwide'],
+        fr: "Oui ! Nous livrons à l'international vers certains pays. Dites-moi votre destination et je vérifie les options.",
+        tn: "إي، نوصلوا لبرا تونس لبعض البلدان. قولي وين باش نثبتلك الإمكانيات.",
+        en: "Yes! We ship internationally to select countries. Let me know your destination and I'll check the options."
+    },
     { kws:['bonjour','salut','عسلامة','سلام','hello','hi'],
       fr:"Bonjour 👋 Ravi de vous aider ! Que cherchez-vous aujourd'hui ?",
       tn:"عسلامة 👋 أهلا بيك! شنية تحب تشري اليوم؟",
