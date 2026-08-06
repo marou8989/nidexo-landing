@@ -17,7 +17,7 @@
       s1:"Connectez WhatsApp", s2:"Importez vos produits", s3:"L'IA apprend votre catalogue", s4:"Nidexo répond automatiquement", s5:"Vous recevez les commandes",
       demo_eyebrow:"Démonstration", demo_title:"Un vendeur qui comprend vos clients, dans leur langue",
       voice_eyebrow:"Voix de marque", voice_title:"Nidexo s'adapte à votre activité",
-      v1_t:"Clinique", v1_d:"\"Bonjour, votre rendez-vous est confirmé pour 14h30. Merci d'arriver 10 minutes en avance.\"",
+      v1_t:"Livraison Lille", v1_d:"Bonjour, est-ce que vous livrez à Lille ?",
       v2_t:"Restaurant", v2_d:"\"Hna 👋 Notre pizza du jour est prête ! Vous voulez qu'on vous la livre ou vous passez la chercher ?\"",
       v3_t:"Boutique", v3_d:"\"Coucou ✨ On vient de recevoir la nouvelle collection, tu veux que je t'envoie les photos ?\"",
       dash_eyebrow:"Tableau de bord", dash_title:"Toute votre activité, en un seul endroit",
