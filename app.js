@@ -206,3 +206,13 @@
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   }, {threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+// تفعيل إظهار العناصر التي تحتوي على كلاس reveal عند التمرير
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
