@@ -216,3 +216,13 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+// --- Reading Progress Bar for Articles ---
+window.addEventListener('scroll', () => {
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + '%';
+  }
+});
