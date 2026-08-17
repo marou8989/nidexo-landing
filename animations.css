@@ -1,0 +1,29 @@
+/* 1. حركة الطفو لصور الـ Hero أو الـ App Mockup */
+.floating-element {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 2. حركة تكبير الأزرار عند الـ Hover */
+.btn-animate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-animate:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 3. حركة ظهور العناصر بنعومة */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
