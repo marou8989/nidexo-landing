@@ -261,3 +261,43 @@
   70% { box-shadow: 0 0 0 12px rgba(108, 77, 255, 0); }
   100% { box-shadow: 0 0 0 0 rgba(108, 77, 255, 0); }
 }
+/* ==========================================
+   FIX ARTICLE SPACING & IMAGE CONTAINERS
+   ========================================== */
+
+/* 1. ضبط المسافات بين الفقرات والعناصر */
+.article-content p, 
+.article-body p {
+  margin-bottom: 24px !important;
+  line-height: 1.7;
+}
+
+/* 2. إصلاح الارتفاع والمساحة الفارغة أسفل الصور/الكروت */
+.article-content figure,
+.article-body figure,
+.article-img-card,
+.article-media-wrapper {
+  margin-top: 32px !important;
+  margin-bottom: 32px !important;
+  height: auto !important; /* يلغي الارتفاع الثابت الزائد */
+  max-height: none !important;
+}
+
+/* 3. التأكد من تحجيم الصورة بشكل ممتاز داخل الحاوية */
+.article-content img,
+.article-body img {
+  width: 100%;
+  height: auto;
+  max-height: 480px; /* تحديد أقصى ارتفاع مناسب للصور */
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
+/* 4. تقليل المسافة أسفل التعليق التوضيحي (Caption) للصور */
+figcaption, 
+.image-caption {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
