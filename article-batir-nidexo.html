@@ -23,15 +23,15 @@
   <!-- Scroll Reveal styles -->
   <style>
     /* =========================================
-       NIDEXO - ARTICLE SCROLL REVEAL
+       NIDEXO - ARTICLE SCROLL REVEAL & SPACING
        ========================================= */
 
     .scroll-reveal {
       opacity: 0;
-      transform: translateY(45px);
+      transform: translateY(15px);
       transition:
-        opacity 0.9s ease,
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
 
@@ -40,13 +40,13 @@
       transform: translateY(0);
     }
 
-    /* Slightly more premium reveal for the CTA */
+    /* Premium reveal for the CTA */
     .cta-reveal {
       opacity: 0;
-      transform: translateY(35px) scale(0.98);
+      transform: translateY(20px) scale(0.98);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
 
@@ -67,7 +67,7 @@
   </style>
 </head>
 
-<body class="bg-[#0a0d14] text-[#f1f5f9] font-sans pt-20 pb-20 px-4 sm:px-6 lg:px-8">
+<body class="bg-[#0a0d14] text-[#f1f5f9] font-sans pt-12 pb-16 px-4 sm:px-6 lg:px-8">
 
   <!-- =========================================
        READING PROGRESS BAR
@@ -78,22 +78,20 @@
   <!-- =========================================
        BACK TO INSIGHTS
        ========================================= -->
-  <div class="max-w-3xl mx-auto mb-10">
-
+  <div class="max-w-3xl mx-auto mb-8">
     <a
       href="insights.html"
       class="text-sm text-[#00C2FF] hover:underline inline-flex items-center gap-1"
     >
       ← Retour aux Insights
     </a>
-
   </div>
 
 
   <!-- =========================================
        ARTICLE
        ========================================= -->
-  <article class="max-w-3xl mx-auto space-y-12">
+  <article class="max-w-3xl mx-auto space-y-6">
 
 
     <!-- =========================================
@@ -114,7 +112,7 @@
       </h1>
 
       <div
-        class="flex items-center gap-3 text-sm text-slate-400 pt-2 border-b border-slate-800 pb-6 flex-wrap"
+        class="flex items-center gap-3 text-sm text-slate-400 pt-2 border-b border-slate-800 pb-4 flex-wrap"
       >
         <span class="font-semibold text-white">
           Marouen Ben Sghaier
@@ -145,31 +143,28 @@
     <!-- =========================================
          SECTION 1
          ========================================= -->
-    <section class="space-y-6">
+    <section class="space-y-3">
 
       <p class="text-lg text-slate-300 leading-relaxed">
         Chaque projet d'envergure demande du temps pour mûrir. Nidexo n'est pas né d'une idée passagère ni d'une simple tendance : c'est le fruit de plus de dix ans d'expérience dans la communication digitale et la transformation numérique. Voir Nidexo prendre vie aujourd'hui, c'est comme accueillir un nouveau-né. C'est un projet porté par la passion, façonné par la patience, et pensé dès le premier jour pour rayonner à l'échelle internationale.
       </p>
 
-
       <!-- IMAGE 1 -->
       <figure
-        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl"
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl my-4"
       >
-
         <img
           src="assets/founder.jpg"
           alt="Marouen Ben Sghaier - Fondateur Nidexo"
-          class="w-full h-auto rounded-xl object-cover max-h-[450px]"
+          class="w-full h-auto rounded-xl object-cover max-h-[420px]"
           loading="lazy"
         >
 
         <figcaption
-          class="text-center text-xs text-slate-400 pt-3 pb-1 italic"
+          class="text-center text-xs text-slate-400 pt-2 pb-1 italic"
         >
           La vision derrière Nidexo : allier la stratégie de communication à la puissance de l'IA.
         </figcaption>
-
       </figure>
 
     </section>
@@ -178,31 +173,28 @@
     <!-- =========================================
          SECTION 2
          ========================================= -->
-    <section class="space-y-6">
+    <section class="space-y-3">
 
       <p class="text-lg text-slate-300 leading-relaxed">
         Mon parcours au sein des institutions publiques et auprès des PME m'a confronté à un défi récurrent : la difficulté d'assurer un service client réactif et personnalisé sans épuiser ses ressources. Mais la véritable étincelle est venue d'un échange quotidien à la maison. En partageant nos expériences avec mon épouse, qui travaille directement dans le financement et les crédits accordés aux PME, nous avons croisé nos visions. Nous n'avons pas seulement identifié un problème de communication, mais aussi son impact financier direct sur la croissance des entreprises.
       </p>
 
-
       <!-- IMAGE 2 -->
       <figure
-        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl"
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl my-4"
       >
-
         <img
           src="assets/dashboard.jpg"
           alt="Interface Nidexo AI Employee"
-          class="w-full h-auto rounded-xl object-cover max-h-[450px]"
+          class="w-full h-auto rounded-xl object-cover max-h-[420px]"
           loading="lazy"
         >
 
         <figcaption
-          class="text-center text-xs text-slate-400 pt-3 pb-1 italic"
+          class="text-center text-xs text-slate-400 pt-2 pb-1 italic"
         >
           Concevoir un employé virtuel IA capable d'automatiser le support et booster les ventes 24/7.
         </figcaption>
-
       </figure>
 
     </section>
@@ -211,7 +203,7 @@
     <!-- =========================================
          SECTION 3
          ========================================= -->
-    <section class="space-y-6">
+    <section class="space-y-3">
 
       <p class="text-lg text-slate-300 leading-relaxed">
         C'est à l'intersection de la stratégie de communication et de la réalité économique qu'est née Nidexo. Nous avons conçu une plateforme d'intelligence artificielle qui ne se contente pas d'automatiser des réponses, mais qui permet aux entreprises de bâtir une relation de confiance et de développer leurs ventes en toute simplicité. Développée selon les standards européens et internationaux les plus rigoureux, Nidexo a été pensée pour franchir les frontières et accompagner les PME partout dans le monde.
@@ -224,9 +216,8 @@
          CALL TO ACTION
          ========================================= -->
     <div
-      class="cta-reveal p-8 rounded-2xl bg-gradient-to-r from-[#6C4DFF]/20 to-[#0288FF]/20 border border-[#00C2FF]/30 text-center space-y-4 my-12"
+      class="cta-reveal p-8 rounded-2xl bg-gradient-to-r from-[#6C4DFF]/20 to-[#0288FF]/20 border border-[#00C2FF]/30 text-center space-y-4 mt-8"
     >
-
       <h3 class="text-2xl font-bold text-white">
         Rejoignez l'aventure Nidexo
       </h3>
@@ -241,7 +232,6 @@
       >
         Essayer Nidexo Maintenant
       </a>
-
     </div>
 
   </article>
@@ -263,54 +253,28 @@
         ".scroll-reveal, .cta-reveal"
       );
 
-      /*
-       * Fallback for older browsers
-       */
       if (!("IntersectionObserver" in window)) {
-
         revealElements.forEach(function (element) {
           element.classList.add("is-visible");
         });
-
         return;
       }
 
-
-      /*
-       * Intersection Observer
-       *
-       * Animation starts when the element
-       * enters the viewport.
-       */
       const observer = new IntersectionObserver(
         function (entries, observer) {
-
           entries.forEach(function (entry) {
-
             if (entry.isIntersecting) {
-
               entry.target.classList.add("is-visible");
-
-              /*
-               * Animate only once.
-               */
               observer.unobserve(entry.target);
-
             }
-
           });
-
         },
         {
-          threshold: 0.15,
-          rootMargin: "0px 0px -50px 0px"
+          threshold: 0.1,
+          rootMargin: "0px 0px -20px 0px"
         }
       );
 
-
-      /*
-       * Observe all animated elements.
-       */
       revealElements.forEach(function (element) {
         observer.observe(element);
       });
