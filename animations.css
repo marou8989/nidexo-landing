@@ -1,29 +1,275 @@
-/* 1. حركة الطفو لصور الـ Hero أو الـ App Mockup */
+/* =========================================================
+   NIDEXO — GLOBAL ANIMATIONS
+   ========================================================= */
+
+
+/* =========================================================
+   1. FLOATING ELEMENT
+   Hero images / App mockups / AI visuals
+   ========================================================= */
+
 .floating-element {
-  animation: float 3s ease-in-out infinite;
+  animation: nidexoFloat 4s ease-in-out infinite;
+  will-change: transform;
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
+@keyframes nidexoFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
-/* 2. حركة تكبير الأزرار عند الـ Hover */
+
+/* =========================================================
+   2. BUTTON HOVER
+   ========================================================= */
+
 .btn-animate {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
 }
+
 .btn-animate:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
-/* 3. حركة ظهور العناصر بنعومة */
+.btn-animate:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+
+/* =========================================================
+   3. BASIC FADE IN
+   Use for elements that should appear on page load
+   ========================================================= */
+
 .fade-in {
-  animation: fadeIn 0.8s ease-in-out forwards;
+  animation: nidexoFadeIn 0.8s ease-out forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes nidexoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   4. SCROLL REVEAL
+   Main animation for sections and images
+   ========================================================= */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(45px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   5. SCROLL REVEAL — LEFT
+   ========================================================= */
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-45px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   6. SCROLL REVEAL — RIGHT
+   ========================================================= */
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(45px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   7. SCALE REVEAL
+   Cards / dashboard / important visual blocks
+   ========================================================= */
+
+.scale-reveal {
+  opacity: 0;
+  transform: scale(0.94);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+  will-change: opacity, transform;
+}
+
+.scale-reveal.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* =========================================================
+   8. PREMIUM CARD HOVER
+   ========================================================= */
+
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   9. IMAGE HOVER
+   ========================================================= */
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.image-hover:hover img {
+  transform: scale(1.035);
+}
+
+
+/* =========================================================
+   10. GLOW PULSE
+   For important AI / CTA elements
+   ========================================================= */
+
+.glow-pulse {
+  animation: nidexoGlow 3s ease-in-out infinite;
+}
+
+@keyframes nidexoGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(0, 194, 255, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 28px rgba(0, 194, 255, 0.18);
+  }
+}
+
+
+/* =========================================================
+   11. DELAYS
+   Useful for staggered animations
+   ========================================================= */
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+
+/* =========================================================
+   12. ACCESSIBILITY
+   Respect reduced-motion preference
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .floating-element,
+  .glow-pulse {
+    animation: none;
+  }
+
+  .fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scale-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn-animate,
+  .card-hover,
+  .image-hover img {
+    transition: none;
+  }
+
 }
