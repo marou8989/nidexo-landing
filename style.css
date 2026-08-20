@@ -209,3 +209,55 @@
   .wa-tooltip span{color:var(--text-dim);font-weight:300;}
   .wa-btn{width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 10px 30px rgba(37,211,102,0.4);cursor:pointer;flex-shrink:0;animation:wa-pulse 2.4s infinite;}
   @keyframes wa-pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+/* ==========================================
+   INSIGHTS & ANIMATION ENHANCEMENTS
+   ========================================== */
+
+/* ---------- 1. Smooth Scroll & Card Appearance ---------- */
+.article-card {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.article-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 2. Professional Card & Image Hover ---------- */
+.article-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 194, 255, 0.35); /* لون الـ Cyan الخاص بـ Nidexo */
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.5);
+}
+
+.article-card .card-image-wrapper,
+.article-card .article-img-holder {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.article-card img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.article-card:hover img {
+  transform: scale(1.04); /* تكبير ناعم واحترافي */
+}
+
+/* ---------- 3. Subtle CTA Animation ---------- */
+.cta-highlight {
+  animation: subtlePulse 3s infinite;
+}
+
+@keyframes subtlePulse {
+  0% { box-shadow: 0 0 0 0 rgba(108, 77, 255, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(108, 77, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(108, 77, 255, 0); }
+}
