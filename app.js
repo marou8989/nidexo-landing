@@ -201,21 +201,56 @@
     });
   });
 
-  // ---------- Scroll reveal ----------
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
-  }, {threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-// تفعيل إظهار العناصر التي تحتوي على كلاس reveal عند التمرير
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+// ---------- Global Scroll Reveal ----------
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
+      entry.target.classList.add('in');
+      entry.target.classList.add('is-visible');
+
+      // Animate only once
+      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+});
 
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+// Standard reveal elements
+document.querySelectorAll('.reveal').forEach((el) => {
+  revealObserver.observe(el);
+});
+
+
+// New scroll-reveal system
+document.querySelectorAll(
+  '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scale-reveal, .cta-reveal'
+).forEach((el) => {
+  revealObserver.observe(el);
+});
+
+
+// ---------- Reading Progress Bar for Articles ----------
+
+window.addEventListener('scroll', () => {
+  const progressBar = document.getElementById('progressBar');
+
+  if (progressBar) {
+    const winScroll = document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const scrolled = height > 0
+      ? (winScroll / height) * 100
+      : 0;
+
+    progressBar.style.width = scrolled + '%';
+  }
+});
 // --- Reading Progress Bar for Articles ---
 window.addEventListener('scroll', () => {
   const progressBar = document.getElementById('progressBar');
