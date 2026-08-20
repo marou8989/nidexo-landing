@@ -237,3 +237,21 @@ window.addEventListener('scroll', () => {
     progressBar.style.width = scrolled + '%';
   }
 });
+// ---------- Scroll Reveal for Insights Article Cards ----------
+const articleObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('is-visible');
+      }, index * 90); // تأثير متدرج خفيف بين المقالات
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -30px 0px'
+});
+
+document.querySelectorAll('.article-card').forEach((card) => {
+  articleObserver.observe(card);
+});
