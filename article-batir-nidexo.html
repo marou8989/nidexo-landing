@@ -3,98 +3,320 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>De l’expérience terrain à Nidexo : construire l’IA de demain | Insights</title>
-  <meta name="description" content="Découvrez l'histoire derrière Nidexo. Comment plus de dix ans d'expérience en communication et la réalité financière des PME ont façonné notre IA.">
+
+  <meta
+    name="description"
+    content="Découvrez l'histoire derrière Nidexo. Comment plus de dix ans d'expérience en communication et la réalité des PME ont façonné une nouvelle vision des AI Employees."
+  >
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Nidexo animations -->
   <link rel="stylesheet" href="animations.css">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Scroll Reveal styles -->
+  <style>
+    /* =========================================
+       NIDEXO - ARTICLE SCROLL REVEAL
+       ========================================= */
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slightly more premium reveal for the CTA */
+    .cta-reveal {
+      opacity: 0;
+      transform: translateY(35px) scale(0.98);
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .cta-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal,
+      .cta-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </head>
+
 <body class="bg-[#0a0d14] text-[#f1f5f9] font-sans pt-20 pb-20 px-4 sm:px-6 lg:px-8">
 
-  <!-- شريط تقدم القراءة -->
+  <!-- =========================================
+       READING PROGRESS BAR
+       ========================================= -->
   <div class="reading-progress-bar" id="progressBar"></div>
 
-  <!-- Header Navigation Back -->
+
+  <!-- =========================================
+       BACK TO INSIGHTS
+       ========================================= -->
   <div class="max-w-3xl mx-auto mb-10">
-    <a href="insights.html" class="text-sm text-[#00C2FF] hover:underline inline-flex items-center gap-1">
+
+    <a
+      href="insights.html"
+      class="text-sm text-[#00C2FF] hover:underline inline-flex items-center gap-1"
+    >
       ← Retour aux Insights
     </a>
+
   </div>
 
-  <!-- Article Container -->
+
+  <!-- =========================================
+       ARTICLE
+       ========================================= -->
   <article class="max-w-3xl mx-auto space-y-12">
-    
-    <!-- Meta & Header -->
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
     <header class="space-y-4 text-center sm:text-left">
-      <span class="text-xs font-bold tracking-widest text-[#00C2FF] uppercase px-3 py-1 bg-[#00C2FF]/10 rounded-full border border-[#00C2FF]/20">
+
+      <span
+        class="text-xs font-bold tracking-widest text-[#00C2FF] uppercase px-3 py-1 bg-[#00C2FF]/10 rounded-full border border-[#00C2FF]/20"
+      >
         Vision & Fondateur
       </span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
-        Bâtir Nidexo : de l'expérience terrain à une vision mondiale de l'IA
+
+      <h1
+        class="text-3xl sm:text-5xl font-extrabold text-white leading-tight"
+      >
+        De l’expérience terrain à Nidexo : construire l’IA de demain
       </h1>
-      <div class="flex items-center gap-3 text-sm text-slate-400 pt-2 border-b border-slate-800 pb-6">
-        <span class="font-semibold text-white">Marouen Ben Sghaier</span>
+
+      <div
+        class="flex items-center gap-3 text-sm text-slate-400 pt-2 border-b border-slate-800 pb-6 flex-wrap"
+      >
+        <span class="font-semibold text-white">
+          Marouen Ben Sghaier
+        </span>
+
         <span>•</span>
-        <span>Fondateur de Nidexo</span>
+
+        <span>
+          Fondateur de Nidexo
+        </span>
+
         <span>•</span>
-        <span>Août 2026</span>
+
+        <span>
+          Août 2026
+        </span>
+
         <span>•</span>
-        <span>5 min de lecture</span>
+
+        <span>
+          5 min de lecture
+        </span>
       </div>
+
     </header>
 
-    <!-- Section 1 -->
+
+    <!-- =========================================
+         SECTION 1
+         ========================================= -->
     <section class="space-y-6">
+
       <p class="text-lg text-slate-300 leading-relaxed">
         Chaque projet d'envergure demande du temps pour mûrir. Nidexo n'est pas né d'une idée passagère ni d'une simple tendance : c'est le fruit de plus de dix ans d'expérience dans la communication digitale et la transformation numérique. Voir Nidexo prendre vie aujourd'hui, c'est comme accueillir un nouveau-né. C'est un projet porté par la passion, façonné par la patience, et pensé dès le premier jour pour rayonner à l'échelle internationale.
       </p>
-      
-      <!-- Image 1 -->
-      <figure class="rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl">
-        <img src="assets/founder.jpg" alt="Marouen Ben Sghaier - Fondateur Nidexo" class="w-full h-auto rounded-xl object-cover max-h-[450px]">
-        <figcaption class="text-center text-xs text-slate-400 pt-3 pb-1 italic">
+
+
+      <!-- IMAGE 1 -->
+      <figure
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl"
+      >
+
+        <img
+          src="assets/founder.jpg"
+          alt="Marouen Ben Sghaier - Fondateur Nidexo"
+          class="w-full h-auto rounded-xl object-cover max-h-[450px]"
+          loading="lazy"
+        >
+
+        <figcaption
+          class="text-center text-xs text-slate-400 pt-3 pb-1 italic"
+        >
           La vision derrière Nidexo : allier la stratégie de communication à la puissance de l'IA.
         </figcaption>
+
       </figure>
+
     </section>
 
-    <!-- Section 2 -->
+
+    <!-- =========================================
+         SECTION 2
+         ========================================= -->
     <section class="space-y-6">
+
       <p class="text-lg text-slate-300 leading-relaxed">
         Mon parcours au sein des institutions publiques et auprès des PME m'a confronté à un défi récurrent : la difficulté d'assurer un service client réactif et personnalisé sans épuiser ses ressources. Mais la véritable étincelle est venue d'un échange quotidien à la maison. En partageant nos expériences avec mon épouse, qui travaille directement dans le financement et les crédits accordés aux PME, nous avons croisé nos visions. Nous n'avons pas seulement identifié un problème de communication, mais aussi son impact financier direct sur la croissance des entreprises.
       </p>
 
-      <!-- Image 2 -->
-      <figure class="rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl">
-        <img src="assets/dashboard.jpg" alt="Interface Nidexo AI Employee" class="w-full h-auto rounded-xl object-cover max-h-[450px]">
-        <figcaption class="text-center text-xs text-slate-400 pt-3 pb-1 italic">
+
+      <!-- IMAGE 2 -->
+      <figure
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl"
+      >
+
+        <img
+          src="assets/dashboard.jpg"
+          alt="Interface Nidexo AI Employee"
+          class="w-full h-auto rounded-xl object-cover max-h-[450px]"
+          loading="lazy"
+        >
+
+        <figcaption
+          class="text-center text-xs text-slate-400 pt-3 pb-1 italic"
+        >
           Concevoir un employé virtuel IA capable d'automatiser le support et booster les ventes 24/7.
         </figcaption>
+
       </figure>
+
     </section>
 
-    <!-- Section 3 -->
+
+    <!-- =========================================
+         SECTION 3
+         ========================================= -->
     <section class="space-y-6">
+
       <p class="text-lg text-slate-300 leading-relaxed">
         C'est à l'intersection de la stratégie de communication et de la réalité économique qu'est née Nidexo. Nous avons conçu une plateforme d'intelligence artificielle qui ne se contente pas d'automatiser des réponses, mais qui permet aux entreprises de bâtir une relation de confiance et de développer leurs ventes en toute simplicité. Développée selon les standards européens et internationaux les plus rigoureux, Nidexo a été pensée pour franchir les frontières et accompagner les PME partout dans le monde.
       </p>
+
     </section>
 
-    <!-- Call to Action Banner -->
-    <div class="p-8 rounded-2xl bg-gradient-to-r from-[#6C4DFF]/20 to-[#0288FF]/20 border border-[#00C2FF]/30 text-center space-y-4 my-12">
-      <h3 class="text-2xl font-bold text-white">Rejoignez l'aventure Nidexo</h3>
+
+    <!-- =========================================
+         CALL TO ACTION
+         ========================================= -->
+    <div
+      class="cta-reveal p-8 rounded-2xl bg-gradient-to-r from-[#6C4DFF]/20 to-[#0288FF]/20 border border-[#00C2FF]/30 text-center space-y-4 my-12"
+    >
+
+      <h3 class="text-2xl font-bold text-white">
+        Rejoignez l'aventure Nidexo
+      </h3>
+
       <p class="text-slate-300 text-sm max-w-lg mx-auto">
         Découvrez comment nos employés virtuels propulsés par l'IA peuvent transformer votre relation client dès aujourd'hui.
       </p>
-      <a href="https://app.nidexo.com" class="inline-block px-6 py-3 bg-[#0288FF] hover:bg-[#00C2FF] text-white font-semibold rounded-lg transition-all shadow-lg">
+
+      <a
+        href="https://app.nidexo.com"
+        class="inline-block px-6 py-3 bg-[#0288FF] hover:bg-[#00C2FF] text-white font-semibold rounded-lg transition-all shadow-lg"
+      >
         Essayer Nidexo Maintenant
       </a>
+
     </div>
 
   </article>
 
-  <!-- Script JS -->
+
+  <!-- =========================================
+       EXISTING NIDEXO JS
+       ========================================= -->
   <script src="app.js"></script>
+
+
+  <!-- =========================================
+       ARTICLE SCROLL REVEAL JS
+       ========================================= -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const revealElements = document.querySelectorAll(
+        ".scroll-reveal, .cta-reveal"
+      );
+
+      /*
+       * Fallback for older browsers
+       */
+      if (!("IntersectionObserver" in window)) {
+
+        revealElements.forEach(function (element) {
+          element.classList.add("is-visible");
+        });
+
+        return;
+      }
+
+
+      /*
+       * Intersection Observer
+       *
+       * Animation starts when the element
+       * enters the viewport.
+       */
+      const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+          entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("is-visible");
+
+              /*
+               * Animate only once.
+               */
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -50px 0px"
+        }
+      );
+
+
+      /*
+       * Observe all animated elements.
+       */
+      revealElements.forEach(function (element) {
+        observer.observe(element);
+      });
+
+    });
+  </script>
 
 </body>
 </html>
