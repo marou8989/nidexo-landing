@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>From Real-World Experience to Nidexo: Building the AI of Tomorrow | Insights</title>
+
+  <meta
+    name="description"
+    content="Discover the story behind Nidexo. How more than ten years of experience in communication and digital transformation shaped a new vision for AI Employees."
+  >
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Nidexo animations -->
+  <link rel="stylesheet" href="animations.css">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Scroll Reveal styles -->
+  <style>
+    /* =========================================
+       NIDEXO - ARTICLE SCROLL REVEAL & SPACING
+       ========================================= */
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(15px);
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Premium reveal for the CTA */
+    .cta-reveal {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .cta-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-reveal,
+      .cta-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#0a0d14] text-[#f1f5f9] font-sans pt-12 pb-16 px-4 sm:px-6 lg:px-8">
+
+  <!-- =========================================
+       READING PROGRESS BAR
+       ========================================= -->
+  <div class="reading-progress-bar" id="progressBar"></div>
+
+
+  <!-- =========================================
+       BACK TO INSIGHTS
+       ========================================= -->
+  <div class="max-w-3xl mx-auto mb-8">
+    <a
+      href="insights.html"
+      class="text-sm text-[#00C2FF] hover:underline inline-flex items-center gap-1"
+    >
+      ← Back to Insights
+    </a>
+  </div>
+
+
+  <!-- =========================================
+       ARTICLE
+       ========================================= -->
+  <article class="max-w-3xl mx-auto space-y-6">
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+    <header class="space-y-4 text-center sm:text-left">
+
+      <span
+        class="text-xs font-bold tracking-widest text-[#00C2FF] uppercase px-3 py-1 bg-[#00C2FF]/10 rounded-full border border-[#00C2FF]/20"
+      >
+        Vision & Founder
+      </span>
+
+      <h1
+        class="text-3xl sm:text-5xl font-extrabold text-white leading-tight"
+      >
+        From Real-World Experience to Nidexo: Building the AI of Tomorrow
+      </h1>
+
+      <div
+        class="flex items-center gap-3 text-sm text-slate-400 pt-2 border-b border-slate-800 pb-4 flex-wrap"
+      >
+
+        <!-- AUTHOR LINKEDIN LINK -->
+        <a
+          href="https://www.linkedin.com/in/marouenbensghaier/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-white hover:text-[#00C2FF] transition-colors inline-flex items-center gap-1.5"
+        >
+          Marouen Ben Sghaier
+
+          <svg class="w-4 h-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z"/>
+          </svg>
+        </a>
+
+        <span>•</span>
+
+        <span>
+          Founder of Nidexo
+        </span>
+
+        <span>•</span>
+
+        <span>
+          August 2026
+        </span>
+
+        <span>•</span>
+
+        <span>
+          5 min read
+        </span>
+      </div>
+
+    </header>
+
+
+    <!-- =========================================
+         SECTION 1
+         ========================================= -->
+    <section class="space-y-3">
+
+      <p class="text-lg text-slate-300 leading-relaxed">
+        Every ambitious project takes time to take shape. Nidexo was not born from a passing idea or a simple trend. It is the result of more than ten years of experience in digital communication and digital transformation. Seeing Nidexo come to life today feels like welcoming something new into the world. It is a project driven by passion, shaped by patience, and designed from day one with an international ambition.
+      </p>
+
+      <!-- IMAGE 1 -->
+      <figure
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl my-4"
+      >
+        <img
+          src="assets/founder.jpg"
+          alt="Marouen Ben Sghaier - Founder of Nidexo"
+          class="w-full h-auto rounded-xl object-cover max-h-[420px]"
+          loading="lazy"
+        >
+
+        <figcaption
+          class="text-center text-xs text-slate-400 pt-2 pb-1 italic"
+        >
+          The vision behind Nidexo: combining communication strategy with the power of AI.
+        </figcaption>
+      </figure>
+
+    </section>
+
+
+    <!-- =========================================
+         SECTION 2
+         ========================================= -->
+    <section class="space-y-3">
+
+      <p class="text-lg text-slate-300 leading-relaxed">
+        My experience working with public institutions and businesses exposed me to a recurring challenge: how to provide responsive and personalized customer service without exhausting valuable resources. But the real spark came from a daily conversation at home. By sharing experiences with my wife, who works directly in SME financing and credit, we began connecting our perspectives. We identified not only a communication challenge, but also its direct financial impact on business growth.
+      </p>
+
+      <!-- IMAGE 2 -->
+      <figure
+        class="scroll-reveal rounded-2xl overflow-hidden border border-slate-800 bg-[#111625] p-2 shadow-2xl my-4"
+      >
+        <img
+          src="assets/dashboard.jpg"
+          alt="Nidexo AI Employee dashboard"
+          class="w-full h-auto rounded-xl object-cover max-h-[420px]"
+          loading="lazy"
+        >
+
+        <figcaption
+          class="text-center text-xs text-slate-400 pt-2 pb-1 italic"
+        >
+          Building an AI Employee capable of automating customer support and helping businesses grow, around the clock.
+        </figcaption>
+      </figure>
+
+    </section>
+
+
+    <!-- =========================================
+         SECTION 3
+         ========================================= -->
+    <section class="space-y-3">
+
+      <p class="text-lg text-slate-300 leading-relaxed">
+        Nidexo was born at the intersection of communication strategy and real-world business challenges. We are building an artificial intelligence platform that goes beyond automating responses, helping businesses build stronger customer relationships and support their growth. Designed with ambitious international standards in mind, Nidexo is built to cross borders and serve businesses wherever they operate.
+      </p>
+
+    </section>
+
+
+    <!-- =========================================
+         CALL TO ACTION
+         ========================================= -->
+    <div
+      class="cta-reveal p-8 rounded-2xl bg-gradient-to-r from-[#6C4DFF]/20 to-[#0288FF]/20 border border-[#00C2FF]/30 text-center space-y-4 mt-8"
+    >
+
+      <h3 class="text-2xl font-bold text-white">
+        Join the Nidexo Journey
+      </h3>
+
+      <p class="text-slate-300 text-sm max-w-lg mx-auto">
+        Discover how AI Employees can help transform the way your business interacts with customers and manages everyday operations.
+      </p>
+
+      <a
+        href="https://app.nidexo.com"
+        class="inline-block px-6 py-3 bg-[#0288FF] hover:bg-[#00C2FF] text-white font-semibold rounded-lg transition-all shadow-lg"
+      >
+        Try Nidexo Now
+      </a>
+
+    </div>
+
+  </article>
+
+
+  <!-- =========================================
+       EXISTING NIDEXO JS
+       ========================================= -->
+  <script src="app.js"></script>
+
+
+  <!-- =========================================
+       ARTICLE SCROLL REVEAL JS
+       ========================================= -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const revealElements = document.querySelectorAll(
+        ".scroll-reveal, .cta-reveal"
+      );
+
+      if (!("IntersectionObserver" in window)) {
+        revealElements.forEach(function (element) {
+          element.classList.add("is-visible");
+        });
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -20px 0px"
+        }
+      );
+
+      revealElements.forEach(function (element) {
+        observer.observe(element);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
