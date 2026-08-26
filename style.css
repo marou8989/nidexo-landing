@@ -301,3 +301,42 @@ figcaption,
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }
+/* =========================================
+   NIDEXO - LANGUAGE SWITCHER
+   ========================================= */
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 999px;
+  background: rgba(17, 22, 37, 0.7);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.language-switcher a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.language-switcher a:hover {
+  color: #00C2FF;
+}
+
+.language-switcher a.active {
+  color: #ffffff;
+  background: rgba(0, 194, 255, 0.12);
+  border: 1px solid rgba(0, 194, 255, 0.25);
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.language-switcher span {
+  color: #475569;
+}
